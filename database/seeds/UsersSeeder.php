@@ -17,7 +17,7 @@ class UsersSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@coredump.com',
             'password' => 'admin',
-            'role' => 'admin',            
+            'role' => 'admin',
         ]);
     }
 }

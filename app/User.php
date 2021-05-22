@@ -26,7 +26,7 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-        'role' => 'admin',
+        'role' => 'user',
     ];
 
     /**
