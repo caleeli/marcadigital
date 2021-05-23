@@ -8,7 +8,7 @@
           class="cert-frame"
         />
       </div>
-      <div :class="form.attributes.style" class="p-4">
+      <div :class="form.attributes.style" class="p-4" :style="`width:${100-form.attributes.width}%`">
         <h1 class="titulo" v-if="$root.user.attributes">
           {{ $root.user.attributes.name }}
         </h1>
@@ -32,7 +32,7 @@
 <script>
 export default {
   props: {
-    form: null,
+    form: Object,
   },
   methods: {
     format(str) {

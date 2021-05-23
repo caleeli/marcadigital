@@ -6,15 +6,10 @@
     <template slot="actions">
       <nav-bar />
     </template>
-    <formulario
-      ref="form"
-      :value="form"
-      :fields="fields"
-      :api="api"
-    />
-    <b-button variant="primary" @click="$refs.form.guardar()">
+    <formulario ref="form" :value="form" :fields="fields" :api="api" />
+    <b-button variant="primary" @click="save">
       <i class="fas fa-save"></i>
-      {{ __('Generate Unique Digital Certificacion') }}
+      {{ form.id ? __("Save") : __("Generate Unique Digital Certificacion") }}
     </b-button>
     <p>Preview:</p>
     <certification :form="form" />
@@ -23,23 +18,29 @@
 
 <script>
 export default {
-  path: "/upload_certificate",
+  path: "/certificate/:id?",
   mixins: [window.ResourceMixin],
   data() {
+    let form = {
+      id: null,
+      attributes: {
+        image: null,
+        title: "",
+        organization: "",
+        organization_url: "",
+        place: "",
+        date: "",
+        width: "60",
+        style: "serif",
+      },
+    };
+    if (this.$route.params.id) {
+      form = this.$api.certifications.row(this.$route.params.id, {}, form);
+    } else {
+    }
     return {
       api: this.$api.user[`${window.userId}/certifications`],
-      form: {
-        attributes: {
-          image: null,
-          title: "",
-          organization: "",
-          organization_url: "",
-          place: "",
-          date: "",
-          width: "60",
-          style: "serif",
-        },
-      },
+      form,
       fields: [
         {
           key: "attributes.image",
@@ -78,7 +79,7 @@ export default {
           label: this.__("Issue date"),
           create: true,
           edit: true,
-          component: 'datetime',
+          component: "datetime",
           properties: { type: "date", format: "YYYY-MM-DD" },
         },
         {
@@ -98,6 +99,15 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    save() {
+      return this.$refs.form.guardar().then((res) => {
+        if (!this.form.id && res instanceof Array && res[0]) {
+          this.form.id = res[0].id;
+        }
+      });
+    },
   },
 };
 </script>
