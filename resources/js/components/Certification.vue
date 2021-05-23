@@ -24,6 +24,9 @@
         <p>
           {{ form.attributes.place + (form.attributes.place && ',') }} {{ format(form.attributes.date) }}
         </p>
+        <p>
+          <img v-if="form.attributes.qrcode" :src="form.attributes.qrcode" width="128px">
+        </p>
       </div>
     </b-card-body>
   </b-card>

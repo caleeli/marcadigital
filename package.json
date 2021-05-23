@@ -33,6 +33,7 @@
     },
     "dependencies": {
         "bootstrap-vue": "^2.15.0",
+        "qrcode": "^1.4.4",
         "vfa-picker": "^5.9.1"
     }
 }

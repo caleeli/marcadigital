@@ -1,22 +1,44 @@
 <template>
   <panel class="panel-secondary">
     <template slot="header">
-      <title-bar /> <i class="fa fa-users"></i> {{ __("User") }}
+      <title-bar /> <i class="fas fa-certificate"></i> {{ __("Certificate") }}
     </template>
     <template slot="actions">
       <nav-bar />
     </template>
     <formulario ref="form" :value="form" :fields="fields" :api="api" />
-    <b-button variant="primary" @click="save">
-      <i class="fas fa-save"></i>
-      {{ form.id ? __("Save") : __("Generate Unique Digital Certificacion") }}
-    </b-button>
-    <p>Preview:</p>
+    <b-form-group
+      id="group-credential_id"
+      :label="__('Credential ID')"
+      label-for="form.attributes.credential_id"
+    >
+      <b-form-input
+        id="form.attributes.credential_id"
+        v-model="form.attributes.credential_id"
+        type="text"
+        readonly
+      />
+    </b-form-group>
+    <div class="d-flex justify-content-between">
+      <div>
+        <b-button variant="primary" @click="save">
+          <i class="fas fa-save"></i>
+          {{ form.id ? __("Save") : __("Generate Unique Digital Certificacion") }}
+        </b-button>
+      </div>
+      <div v-if="form.id">
+        {{ __("Share it") }}:
+        <b-button class="linkedin" size="sm" :href="linkedin()" target="_blank"><i class="fab fa-linkedin-in"></i></b-button>
+      </div>
+    </div>
+    <p>{{ __("Preview") }}:</p>
     <certification :form="form" />
   </panel>
 </template>
 
 <script>
+import QRCode from "qrcode";
+
 export default {
   path: "/certificate/:id?",
   mixins: [window.ResourceMixin],
@@ -32,6 +54,8 @@ export default {
         date: "",
         width: "60",
         style: "serif",
+        credential_id: "",
+        qrcode: "",
       },
     };
     if (this.$route.params.id) {
@@ -54,6 +78,9 @@ export default {
           label: this.__("Title"),
           create: true,
           edit: true,
+          properties: {
+            required: true,
+          },
         },
         {
           key: "attributes.organization",
@@ -101,11 +128,36 @@ export default {
     };
   },
   methods: {
+    linkedin() {
+      const url = this.url();
+      const certId = this.form.attributes.credential_id;
+      const date = new Date(`${this.form.attributes.date} 00:00:00`);
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      return `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${encodeURIComponent(this.form.attributes.title)}&organization=${encodeURIComponent(this.form.attributes.organization)}&issueYear=${year}&issueMonth=${month}&certUrl=${encodeURIComponent(url)}&certId=${encodeURIComponent(certId)}&credentialDoesNotExpire=1`;
+    },
+    url() {
+      return `${window.location.origin}/credential/${this.form.id}`;
+    },
     save() {
       return this.$refs.form.guardar().then((res) => {
-        if (!this.form.id && res instanceof Array && res[0]) {
-          this.form.id = res[0].id;
+        const data = res.data;
+        if (!this.form.id && data instanceof Array && data[0]) {
+          this.form.id = data[0].id;
+          this.form.attributes.credential_id = data[0].credential_id;
         }
+        QRCode.toDataURL(
+          this.url()
+        ).then((url) => {
+          if (this.form.attributes.qrcode !== url) {
+            this.form.attributes.qrcode = url;
+            this.$refs.form.guardar().then(() => {
+              this.$router.push(`/certificate/${this.form.id}`);
+            });
+          } else {
+            this.$router.push(`/certificate/${this.form.id}`);
+          }
+        });
       });
     },
   },
@@ -113,4 +165,8 @@ export default {
 </script>
 
 <style scoped>
+.linkedin {
+  background-color: #007bb5;
+  color: white;
+}
 </style>

@@ -25,7 +25,7 @@
       </b-card-body>
     </b-card>
     <div class="d-flex flex-row justify-content-center">
-      <b-card v-for="item in items" :key="`item-${item.id}`">
+      <b-card v-for="item in items" :key="`item-${item.id}`" class="mt-2 ml-1 mr-1">
         <dl>
           <dt>
             <b-link :to="`certificate/${item.id}`">

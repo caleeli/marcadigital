@@ -1,6 +1,7 @@
 <template>
   <span>
     <img class="logo" :src="logo">
+    /
   </span>
 </template>
 

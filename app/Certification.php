@@ -19,6 +19,7 @@ class Certification extends Model
         'date',
         'width',
         'style',
+        'qrcode',
     ];
 
     protected $casts = [
@@ -32,12 +33,24 @@ class Certification extends Model
         });
         static::saving(function (Certification $model) {
             $model->favicon = $model->getFavIcon();
+            $model->credential_id = $model->getCredentialId();
         });
     }
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getCredentialId()
+    {
+        $md5Id = \md5("{$this->id}");
+        $md5Image = \md5(\json_encode($this->image));
+        $md5Organization = \md5($this->organization, true);
+        $id = \strtoupper(substr($md5Id, 0, 4));
+        $cert = \hexdec(substr($md5Image, 0, 8));
+        $org = substr(\base64_encode($md5Organization), 0, 4);
+        return "{$id}-{$cert}-{$org}";
     }
 
     public function getFavIcon()
@@ -67,6 +80,9 @@ class Certification extends Model
     public function getUrlContent($url, $path = null)
     {
         $parsed = \parse_url($url);
+        if (!isset($parsed['scheme'])) {
+            return;
+        }
         if (!$path) {
             $path = $parsed['path'] ?? '';
         }
@@ -83,5 +99,19 @@ class Certification extends Model
     private function testUrl($url)
     {
         return @\file_get_contents($url);
+    }
+
+    public function validation()
+    {
+        return [
+            'image' => 'required',
+            'title' => 'required',
+            'organization' => 'required',
+            'organization_url' => 'required',
+            'place' => 'required',
+            'date' => 'required',
+            'width' => 'required',
+            'style' => 'required',
+        ];
     }
 }
