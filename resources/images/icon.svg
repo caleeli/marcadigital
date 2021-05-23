@@ -1,11 +1,7 @@
-<svg width="109" height="129" viewBox="0 0 109 129" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8 7L81.5 48.5L8 94.5V7Z" stroke="#4695D0" stroke-opacity="0.3333" stroke-width="16" stroke-linejoin="bevel" />
-    <path d="M8 34L81.5 75.5L8 121.5V34Z" stroke="#6C3E92" stroke-opacity="0.3333" stroke-width="16" stroke-linejoin="bevel" />
-    <path d="M31 20L104.5 61.5L31 107.5V20Z" stroke="#F7C000" stroke-opacity="0.3333" stroke-width="16" stroke-linejoin="bevel" />
-    <path d="M8 34L81.5 75.5L8 121.5V34Z" stroke="#6C3E92" stroke-opacity="0.3333" stroke-width="16" stroke-linejoin="bevel" />
-    <path d="M31 20L104.5 61.5L31 107.5V20Z" stroke="#F7C000" stroke-opacity="0.3333" stroke-width="16" stroke-linejoin="bevel" />
-    <path d="M8 7L81.5 48.5L8 94.5V7Z" stroke="#4695D0" stroke-opacity="0.3333" stroke-width="16" stroke-linejoin="bevel" />
-    <path d="M31 20L104.5 61.5L31 107.5V20Z" stroke="#F7C000" stroke-opacity="0.3333" stroke-width="16" stroke-linejoin="bevel" />
-    <path d="M8 7L81.5 48.5L8 94.5V7Z" stroke="#4695D0" stroke-opacity="0.3333" stroke-width="16" stroke-linejoin="bevel" />
-    <path d="M8 34L81.5 75.5L8 121.5V34Z" stroke="#6C3E92" stroke-opacity="0.3333" stroke-width="16" stroke-linejoin="bevel" />
+<svg width="126" height="126" viewBox="0 0 126 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2.89489" y="79.1051" width="88" height="88" transform="rotate(-60 2.89489 79.1051)" fill="#E5E5E5" />
+    <rect x="0.774612" y="63" width="88" height="88" transform="rotate(-45 0.774612 63)" fill="#E8CE2D" />
+    <rect x="2.89489" y="46.8949" width="88" height="88" transform="rotate(-30 2.89489 46.8949)" fill="#E469A5" />
+    <rect x="9.11124" y="31.8873" width="88" height="88" transform="rotate(-15 9.11124 31.8873)" fill="#16A2D9" />
+    <rect x="19" y="19" width="88" height="88" fill="#AFC73B" />
 </svg>
