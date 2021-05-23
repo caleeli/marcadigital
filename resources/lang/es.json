@@ -1,4 +1,9 @@
 {
+  "E-Mail Address": "Dirección de correo electrónico",
+  "Password": "Contraseña",
+  "Remember Me": "Recuérdame",
+  "Forgot Your Password?": "¿Olvidaste tu contraseña?",
+  "Don't have an account yet?": "¿Aún no tienes una cuenta?",
   "Verify Email Address": "Confirme su dirección de correo electrónico",
   "Please click the button below to verify your email address.": "Haga clic en el botón de abajo para verificar su dirección de correo electrónico.",
   "If you did not create an account, no further action is required.": "Si no creó una cuenta, no se requiere ninguna otra acción.",
@@ -21,7 +26,7 @@
   "Upload certification": "Cargar certificado",
   "Login with": "Ingresar con",
   "Login": "Ingresar",
-  "Register": "Registrarse",
+  "Register": "Registrate",
   "Password and confirm password does not match": "Contraseña y su confirmación no coinciden",
   "Menus": "Menues",
   "User": "Usuario",

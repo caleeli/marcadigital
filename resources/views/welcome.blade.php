@@ -6,61 +6,10 @@
 
         <title>{{config('app.name')}}</title>
 
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background: rgb(85,76,232);
-                background: linear-gradient(9deg, rgba(85,76,232,1) 0%, rgba(116,116,255,1) 35%, rgba(220,249,255,1) 100%);
-                color: white;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <link href="{{ mix('css/welcome.css') }}" rel="stylesheet">
+        @foreach (config('plugins.css') as $css)
+        <link href="{{ $css }}?{{filemtime(public_path($css))}}" rel="stylesheet">
+        @endforeach
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -78,13 +27,18 @@
                 </div>
             @endif
 
-            <div class="content">
-                <h1 class="title m-b-md">
-                    <img src="{{ url('images/logo.svg') }}">
-                </h1>
-                <h2 class="subtitle m-b-md">
-                    {{ __('Digital brand') }}
-                </h2>
+            <div class="content d-flex flex-row flex-nowrap">
+                <div class="align-self-center">
+                    <h1 class="title m-b-md">
+                        <img src="{{ url('images/logo.svg') }}">
+                    </h1>
+                    <h2 class="subtitle m-b-md text-white">
+                        {{ __('Digital brand') }}
+                    </h2>
+                </div>
+                <div>
+                    @include('auth.login_card')
+                </div>
             </div>
         </div>
     </body>

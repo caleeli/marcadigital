@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Traits\OAuthProviders;
 
 class HomeController extends Controller
 {
+    use OAuthProviders;
+
     /**
      * Create a new controller instance.
      *
@@ -23,6 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', ['load_js' => true]);
+        return view('home', ['load_js' => true, 'oauthProviders' => $this->oauthProviders(2)]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Traits\OAuthProviders;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    use OAuthProviders;
 
     /**
      * Where to redirect users after login.
@@ -39,37 +41,6 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except(['logout', '']);
-    }
-
-    /**
-     * Get OAuth login providers
-     *
-     * @param integer $columns
-     *
-     * @return array
-     */
-    private function oauthProviders($columns = 1)
-    {
-        $providers = [];
-        $i = -1;
-        foreach (config('services') as $key => $provider) {
-            if (isset($provider['client_id'])
-                && isset($provider['client_secret'])
-                && isset($provider['redirect'])
-            ) {
-                $provider['key'] = $key;
-                if ($columns > 1) {
-                    if (!isset($providers[$i]) || count($providers[$i]) === $columns) {
-                        $i++;
-                        $providers[$i] = [];
-                    }
-                    $providers[$i][] = $provider;
-                } else {
-                    $providers[] = $provider;
-                }
-            }
-        }
-        return $providers;
     }
 
     /**

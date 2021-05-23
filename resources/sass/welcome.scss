@@ -1,0 +1,160 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+html,
+body {
+    background: rgb(85, 76, 232);
+    background: linear-gradient(
+        9deg,
+        rgba(85, 76, 232, 1) 0%,
+        rgba(116, 116, 255, 1) 35%,
+        rgba(220, 249, 255, 1) 100%
+    );
+    color: white;
+    font-family: $font-family-sans-serif;
+    font-weight: 200;
+    height: 100vh;
+    margin: 0;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 84px;
+}
+
+.links > a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+.d-flex {
+    display: flex;
+}
+.flex-row {
+    flex-direction: row !important;
+}
+.card {
+    border: 1px solid lightgray;
+    background-color: white;
+    color: black;
+    border-radius: 1em;
+    margin-left: 4em;
+    text-align: left;
+}
+.card-header {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid lightgray;
+    padding: 1em;
+    color: black;
+}
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+.form-control {
+    border-radius: 4px;
+    display: block;
+    width: 100%;
+    height: 32px;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-control,
+.form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+}
+.col-form-label {
+    padding-top: calc(0.375rem + 1px);
+    padding-bottom: calc(0.375rem + 1px);
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.6;
+}
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #a1cbef;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+.row {
+    margin-right: 2.375rem;
+    margin-left: 1rem;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #3f51b5;
+    border-color: #3f51b5;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+.btn {
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.4857;
+    margin-bottom: 4px;
+    padding: 0.375rem 0.75rem;
+}
+.ml-2, .mx-2 {
+    margin-left: 0.5rem !important;
+}
+.btn-link {
+    padding: 0px;
+    text-decoration: none;
+}
+.align-self-center {
+    -ms-flex-item-align: center!important;
+    align-self: center!important;
+}

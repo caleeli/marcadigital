@@ -15,6 +15,7 @@ if (!mix.inProduction()) {
     mix.js('resources/js/app.js', 'public/js')
         .extract()
         .sass('resources/sass/app.scss', 'public/css')
+        .sass('resources/sass/welcome.scss', 'public/css')
         .sourceMaps()
         .version();
 
@@ -25,5 +26,6 @@ if (!mix.inProduction()) {
     mix.js('resources/js/app.js', 'public/js')
         .extract()
         .sass('resources/sass/app.scss', 'public/css')
+        .sass('resources/sass/welcome.scss', 'public/css')
         .version();
 }
