@@ -15,7 +15,7 @@ class CreateMenusTable extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('parent')->nullable();
+            $table->unsignedBigInteger('parent')->nullable();
             $table->char('code', 64);
             $table->string('name');
             $table->string('path')->nullable();
@@ -25,7 +25,7 @@ class CreateMenusTable extends Migration
             $table->foreign('parent')->references('id')->on('menus')->onDelete('cascade');
         });
         Schema::create('menu_role', function (Blueprint $table) {
-            $table->bigInteger('menu_id', 64);
+            $table->unsignedBigInteger('menu_id', 64);
             $table->string('role');
             $table->timestamps();
             $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
