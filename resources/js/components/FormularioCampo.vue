@@ -14,18 +14,18 @@
     :label="withoutLabel ? '': field.label"
     label-size="sm"
     :state="state"
-    :invalid-feedback="feedback"
+    :invalid-feedback="invalidFeedback"
   >
-    <component :is="field.component" v-bind="field.properties" :value="getValue(value, field.key)" @change="setValue(value, field.key, $event)" />
+    <component :is="field.component" v-bind="field.properties" :value="getValue(value, field.key)" :state="state || fieldState(value, field)" @change="setValue(value, field.key, $event)" />
   </b-form-group>
   <b-form-group
     v-else
     :label="withoutLabel ? '': field.label"
     label-size="sm"
     :state="state"
-    :invalid-feedback="feedback"
+    :invalid-feedback="invalidFeedback"
   >
-    <b-form-input class="form-control" :type="field.type || 'text'" :value="getValue(value, field.key)" @input="setValue(value, field.key, $event)" v-bind="field.properties" />
+    <b-form-input class="form-control" :type="field.type || 'text'" :state="state || fieldState(value, field)" :value="getValue(value, field.key)" @input="setValue(value, field.key, $event)" v-bind="field.properties" />
   </b-form-group>
 </template>
 
@@ -37,10 +37,17 @@ export default {
     field: Object,
     value: Object,
     state: Boolean,
-    feedback: String,
+    invalidFeedback: String,
     withoutLabel: Boolean,
   },
   methods: {
+    fieldState(value, field) {
+      if (field.properties && field.properties.required) {
+        const text = this.getValue(value, field.key);
+        return !!text;
+      }
+      return null;
+    },
     updateAvatar(avatar) {
       this.value.attributes.avatar = avatar;
     },

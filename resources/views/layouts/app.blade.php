@@ -33,7 +33,7 @@
             window._locale = '{{ app()->getLocale() }}';
             window._translations = {!! cache('translations') !!};
         </script>
-        @if(Auth::user())
+        @if(Auth::user() && !empty($load_js))
         <script src="{{ mix('js/manifest.js') }}" defer></script>
         <script src="{{ mix('js/vendor.js') }}" defer></script>
         <script src="{{ mix('js/app.js') }}" defer></script>

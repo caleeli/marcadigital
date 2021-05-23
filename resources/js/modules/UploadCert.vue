@@ -87,6 +87,9 @@ export default {
           label: this.__("Issuing organization"),
           create: true,
           edit: true,
+          properties: {
+            required: true,
+          },
         },
         {
           key: "attributes.organization_url",
@@ -94,12 +97,18 @@ export default {
           create: true,
           edit: true,
           type: "url",
+          properties: {
+            required: true,
+          },
         },
         {
           key: "attributes.place",
           label: this.__("Issue place"),
           create: true,
           edit: true,
+          properties: {
+            required: true,
+          },
         },
         {
           key: "attributes.date",
@@ -107,7 +116,7 @@ export default {
           create: true,
           edit: true,
           component: "datetime",
-          properties: { type: "date", format: "YYYY-MM-DD" },
+          properties: { type: "date", format: "YYYY-MM-DD", required: true },
         },
         {
           key: "attributes.width",

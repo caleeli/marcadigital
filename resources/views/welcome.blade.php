@@ -10,8 +10,9 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                background: rgb(85,76,232);
+                background: linear-gradient(9deg, rgba(85,76,232,1) 0%, rgba(116,116,255,1) 35%, rgba(220,249,255,1) 100%);
+                color: white;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
@@ -78,9 +79,12 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+                <h1 class="title m-b-md">
+                    <img src="{{ url('images/logo.svg') }}">
+                </h1>
+                <h2 class="subtitle m-b-md">
                     {{ __('Digital brand') }}
-                </div>
+                </h2>
             </div>
         </div>
     </body>
