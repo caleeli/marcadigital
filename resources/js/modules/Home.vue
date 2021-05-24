@@ -43,6 +43,9 @@
           </dd>
         </dl>
         <div class="text-right">
+          <b-button class="linkedin" size="sm" :href="linkedin(item)" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
+          </b-button>
           <b-button-group class="mx-1">
             <b-button
               variant="outline-secondary"
@@ -89,6 +92,21 @@ export default {
     refresh() {
       this.$api.user[`${window.userId}/certifications`].refresh(this.items);
     },
+    linkedin(item) {
+      const url = `${window.location.origin}/credential/${item.id}`;
+      const certId = item.attributes.credential_id;
+      const date = new Date(`${item.attributes.date} 00:00:00`);
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      return `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${encodeURIComponent(item.attributes.title)}&organizationName=${encodeURIComponent(item.attributes.organization)}&issueYear=${year}&issueMonth=${month}&certUrl=${encodeURIComponent(url)}&certId=${encodeURIComponent(certId)}&credentialDoesNotExpire=1`;
+    },
   },
 };
 </script>
+
+<style scoped>
+.linkedin {
+  background-color: #007bb5;
+  color: white;
+}
+</style>

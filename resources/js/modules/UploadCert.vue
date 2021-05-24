@@ -143,7 +143,7 @@ export default {
       const date = new Date(`${this.form.attributes.date} 00:00:00`);
       const month = date.getMonth() + 1;
       const year = date.getFullYear();
-      return `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${encodeURIComponent(this.form.attributes.title)}&organization=${encodeURIComponent(this.form.attributes.organization)}&issueYear=${year}&issueMonth=${month}&certUrl=${encodeURIComponent(url)}&certId=${encodeURIComponent(certId)}&credentialDoesNotExpire=1`;
+      return `https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${encodeURIComponent(this.form.attributes.title)}&organizationName=${encodeURIComponent(this.form.attributes.organization)}&issueYear=${year}&issueMonth=${month}&certUrl=${encodeURIComponent(url)}&certId=${encodeURIComponent(certId)}&credentialDoesNotExpire=1`;
     },
     url() {
       return `${window.location.origin}/credential/${this.form.id}`;
