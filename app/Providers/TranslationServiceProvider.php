@@ -18,7 +18,7 @@ class TranslationServiceProvider extends ServiceProvider
         Cache::rememberForever('translations', function () {
             $translations = collect();
 
-            foreach ([config('app.locale')] as $locale) { // suported locales
+            foreach (['es', 'en'] as $locale) { // suported locales
                 $translations[$locale] = [
                     'php' => $this->phpTranslations($locale),
                     'json' => $this->jsonTranslations($locale),
