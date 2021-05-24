@@ -20,6 +20,7 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->middleware('verified')->name('home');
+Route::get('/credential/{credential}', 'CredentialController@show')->name('credential.show');
 
 // Socialite routes
 Route::get('login/{provider}', [LoginController::class, 'redirectToProvider']);
