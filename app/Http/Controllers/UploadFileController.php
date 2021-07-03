@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Spatie\PdfToImage\Pdf;
 use StdClass;
 
 class UploadFileController extends Controller
@@ -44,6 +45,9 @@ class UploadFileController extends Controller
     private function resize($file, $maxSize)
     {
         $filePath = \storage_path('app/public/' . $file);
+        if (substr($file, -4) === '.pdf') {
+            $filePath = $this->convertPDF2JPG($filePath);
+        }
         $src = imagecreatefromstring(file_get_contents($filePath));
         $size = getimagesize($filePath);
         $ratio = $size[0] / $size[1];
@@ -53,13 +57,13 @@ class UploadFileController extends Controller
         $dst = $this->resample($src, $size, $targetWidth, $targetHeight);
 
         $quality = 100;
-        $minQuality = 75;
+        $minQuality = 80;
         $target = "{$filePath}.jpg";
         for ($i=0; $i < 15; $i++) {
             imagejpeg($dst, $target, $quality);
             $filesize = \filesize($target) / 1000;
             if ($filesize > $maxSize) {
-                $quality -= 5;
+                $quality -= 10;
                 if ($quality < $minQuality) {
                     $quality = 100;
                     $targetWidth -= 100;
@@ -82,5 +86,14 @@ class UploadFileController extends Controller
         $dst = imagecreatetruecolor($width, $height);
         imagecopyresampled($dst, $src, 0, 0, 0, 0, $width, $height, $size[0], $size[1]);
         return $dst;
+    }
+
+    private function convertPDF2JPG($pathToPdf)
+    {
+        $pathToJpg = "{$pathToPdf}.jpg";
+        $pdf = new Pdf($pathToPdf);
+        $pdf->saveImage($pathToJpg);
+        unlink($pathToPdf);
+        return $pathToJpg;
     }
 }

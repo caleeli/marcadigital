@@ -37,7 +37,8 @@
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "spatie/pdf-to-image": "^2.1"
     },
     "require-dev": {
         "beyondcode\/laravel-dump-server": "^1.0",
