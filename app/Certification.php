@@ -19,11 +19,13 @@ class Certification extends Model
         'date',
         'width',
         'style',
+        'rotation',
         'qrcode',
     ];
 
     protected $casts = [
         'image' => 'array',
+        'rotation' => 'int',
     ];
 
     protected static function booted()
@@ -113,5 +115,36 @@ class Certification extends Model
             'width' => 'required',
             'style' => 'required',
         ];
+    }
+
+    public function viewBox()
+    {
+        return $this->rotation == 0 || $this->rotation == 2 ? '0 0 210 279' : '0 0 279 210';
+    }
+
+    public function imageTransform()
+    {
+        switch ($this->rotation) {
+            case 0:
+              return '';
+            case 1:
+              return 'rotate(90 139.5 139.5)';
+            case 2:
+              return 'rotate(180 105 105)';
+            case 3:
+              return 'rotate(270 105 105)';
+        }
+    }
+
+    public function imageWidth()
+    {
+        return 210;
+    }
+
+    public function imageHeight()
+    {
+        $filePath = \storage_path('app/public/' . $this->image['path']);
+        $size = getimagesize($filePath);
+        return $this->imageWidth() / $size[0] * $size[1];
     }
 }

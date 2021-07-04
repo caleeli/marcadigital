@@ -82,7 +82,14 @@
   </div>
   <div class="d-flex flex-row p-4">
     <div style="width:{{ $credential->width }}%">
-      <img src="{{ $credential->image['url'] }}" width="100%" class="cert-frame">
+      <svg viewBox="{{ $credential->viewBox() }}" width="100%" class="cert-frame">
+        <image
+          href="{{ $credential->image['url'] }}"
+          width="{{ $credential->imageWidth() }}"
+          height="{{ $credential->imageHeight() }}"
+          transform="{{ $credential->imageTransform() }}"
+        />
+      </svg>
     </div>
     <div class="{{ $credential->style }} p-4" style="width:{{ 100 - $credential->width }}%">
       <h1 class="titulo">

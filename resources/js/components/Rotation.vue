@@ -1,28 +1,36 @@
 <template>
   <b-form-radio-group
-    id="btn-radios-serif"
+    id="btn-radios-rotation"
     v-model="selected"
     :aria-describedby="ariaDescribedby"
-    name="radios-btn-serif"
+    name="radios-btn-rotation"
     buttons
     button-variant="outline-secondary"
     @change="change"
   >
     <b-form-radio
-      v-model="selected"
       :aria-describedby="ariaDescribedby"
-      value="serif"
-      class="serif"
+      :value="0"
     >
-      {{ __("Serif") }}
+      0°
     </b-form-radio>
     <b-form-radio
-      v-model="selected"
       :aria-describedby="ariaDescribedby"
-      value="sans-serif"
-      class="sans-serif"
+      :value="1"
     >
-      {{ __("Sans Serif") }}
+      90°
+    </b-form-radio>
+    <b-form-radio
+      :aria-describedby="ariaDescribedby"
+      :value="2"
+    >
+      180°
+    </b-form-radio>
+    <b-form-radio
+      :aria-describedby="ariaDescribedby"
+      :value="3"
+    >
+      270°
     </b-form-radio>
   </b-form-radio-group>
 </template>
@@ -30,11 +38,11 @@
 <script>
 export default {
   props: {
-    value: { default: "serif" },
+    value: { default: 0 },
   },
   data() {
     return {
-      ariaDescribedby: "style",
+      ariaDescribedby: "rotation",
       selected: this.value,
     };
   },
@@ -52,12 +60,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.serif {
-  font-family: "Times New Roman", Times, serif;
-}
-.sans-serif {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-</style>

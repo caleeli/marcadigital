@@ -54,6 +54,7 @@ export default {
         date: "",
         width: "60",
         style: "serif",
+        rotation: 0,
         credential_id: "",
         qrcode: "",
       },
@@ -132,6 +133,13 @@ export default {
           create: true,
           edit: true,
           component: "Serif",
+        },
+        {
+          key: "attributes.rotation",
+          label: this.__("Rotation"),
+          create: true,
+          edit: true,
+          component: "Rotation",
         },
       ],
     };
